@@ -44,7 +44,7 @@ test('opcode with adding 3 parameters', () => {
     expect(result.intcode).toEqual(expected)
 })
 
-test.only('diagnostic code from data file is 5346030', () => {
+test('diagnostic code from data file is 5346030', () => {
     let intcode = getOpcodeFromFile('src/Day5/program.data')
     let expectedDiagnosticCode = 5346030
 

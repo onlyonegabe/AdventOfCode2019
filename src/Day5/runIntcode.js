@@ -14,7 +14,7 @@ export default function runIntcode(input, incomingIntcode) {
     while(true) {
         let result = doInstruction(intcode, input, index)
         if (result === endProgram) {
-            return { 'intcode': intcode, 'output': output }
+            return { 'intcode': intcode, 'output': output, 'index': index }
         } else if (result === moveTwoPositions) {
             index += 2
         } else if (result === moveThreePositions) {
@@ -23,6 +23,8 @@ export default function runIntcode(input, incomingIntcode) {
             index += 4
         } else if (result === moveFivePositions) {
             index += 5
+        } else {
+            index = result
         }
     }
 }
@@ -69,9 +71,34 @@ function doInstruction(incomingIntcode, input, index) {
             return moveTwoPositions
         case 5:
             if (incomingIntcode[index + 1] !== 0) {
-                
+                index = incomingIntcode[index + 2]
+            }
+            else {
+                return moveTwoPositions
+            }
+            return index
+        case 6:
+            if(incomingIntcode[index + 1] === 0) {
+                index = incomingIntcode[index + 2]
+            }
+            else {
+                return moveTwoPositions
+            }
+            return index
+        case 7:
+            if(incomingIntcode[index + 1] < incomingIntcode[index + 2]) {
+                incomingIntcode[position3] = 1
+            } else {
+                incomingIntcode[position3] = 0
             }
             return moveThreePositions
+        case 8:
+            if(incomingIntcode[index + 1] === incomingIntcode[index + 2]) {
+                incomingIntcode[position3] = 1
+            }  else {
+                incomingIntcode[position3] = 0
+            }  
+            return moveThreePositions        
         case 99:
             console.log('halt')
             return endProgram
