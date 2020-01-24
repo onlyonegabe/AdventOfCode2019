@@ -58,23 +58,24 @@ describe('Given opcode is 7', () => {
         const optcode = 7
         const firstParameter = 1
         const secondParameter = 2
-        const thirdParameter = 4
-        const intCode = [optcode, firstParameter, secondParameter, thirdParameter, 8, 99]
-        const expected = [optcode, firstParameter, secondParameter, thirdParameter, 1, 99]
+        const thirdParameter = 3
+        const intCode = [optcode, firstParameter, secondParameter, thirdParameter, 99]
+        const expected = [optcode, firstParameter, secondParameter, 1, 99]
     
         const input = 0
         const result = runIntcode(input, intCode)
     
+        console.log(result.intcode)
         expect(result.intcode).toEqual(expected)
     })
     
     test('when the first parameter is not less than the second parameter then it stores 0 in the position given by the third parameter', () => {
         const optcode = 7
         const firstParameter = 2
-        const secondParameter = 1
-        const thirdParameter = 4
-        const intCode = [optcode, firstParameter, secondParameter, thirdParameter, 8, 99]
-        const expected = [optcode, firstParameter, secondParameter, thirdParameter, 0, 99]
+        const secondParameter = 3
+        const thirdParameter = 1
+        const intCode = [optcode, firstParameter, secondParameter, thirdParameter, 99]
+        const expected = [optcode, 0, secondParameter, thirdParameter, 99]
     
         const input = 0
         const result = runIntcode(input, intCode)
@@ -95,7 +96,6 @@ describe('Given opcode is 8', () => {
         const input = 0
         const result = runIntcode(input, intCode)
     
-        console.log(result.intcode)
         expect(result.intcode).toEqual(expected)
     })
 

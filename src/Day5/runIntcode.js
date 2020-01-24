@@ -79,7 +79,7 @@ function doInstruction(incomingIntcode, input, index) {
                 index = incomingIntcode[index + 2]
             }
             else {
-                return moveTwoPositions
+                return moveThreePositions
             }
             return index
         case 6:
@@ -88,17 +88,17 @@ function doInstruction(incomingIntcode, input, index) {
                 index = incomingIntcode[index + 2]
             }
             else {
-                return moveTwoPositions
+                return moveThreePositions
             }
             return index
         case 7:
             console.log('optCode 7')
-            if(incomingIntcode[index + 1] < incomingIntcode[index + 2]) {
+            if(incomingIntcode[valueOneAway] < incomingIntcode[valueTwoAway]) {
                 incomingIntcode[valueThreeAway] = 1
             } else {
                 incomingIntcode[valueThreeAway] = 0
             }
-            return moveThreePositions
+            return moveFourPositions
         case 8:
             console.log('optCode 8')
             if(incomingIntcode[valueOneAway] === incomingIntcode[valueTwoAway]) {
