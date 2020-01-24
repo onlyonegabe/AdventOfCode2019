@@ -31,12 +31,12 @@ export default function runIntcode(input, incomingIntcode) {
 
 function doInstruction(incomingIntcode, input, index) {
     let instruction = incomingIntcode[index]
-    let position1 = incomingIntcode[index + 1]
-    let position2 = incomingIntcode[index + 2]
-    let position3 = incomingIntcode[index + 3]
-    let position4 = incomingIntcode[index + 4]
+    let valueOneAway = incomingIntcode[index + 1]
+    let valueTwoAway = incomingIntcode[index + 2]
+    let valueThreeAway = incomingIntcode[index + 3]
+    let valueFourAway = incomingIntcode[index + 4]
 
-    let parameters = getParameters(position1, position2, position3, instruction, incomingIntcode)
+    let parameters = getParameters(valueOneAway, valueTwoAway, valueThreeAway, instruction, incomingIntcode)
     let parameter1 = parameters.parameter1
     let parameter2 = parameters.parameter2
     let parameter3 = parameters.parameter3
@@ -44,32 +44,37 @@ function doInstruction(incomingIntcode, input, index) {
     let opcode = getOpcode(instruction)
     switch (opcode) {
         case 1:
+            console.log('optCode 1')
             if (typeof(parameter3) === 'undefined') {
-                intcode[position3] = parameter1 + parameter2
+                intcode[valueThreeAway] = parameter1 + parameter2
                 return moveFourPositions
             } else {
-                intcode[position4] = parameter1 + parameter2 + parameter3
+                intcode[valueFourAway] = parameter1 + parameter2 + parameter3
                 return moveFivePositions
             }
-        case 2: 
+        case 2:
+            console.log('optCode 2')
             if (typeof(parameter3) === 'undefined') {
-                intcode[position3] = parameter1 * parameter2
+                intcode[valueThreeAway] = parameter1 * parameter2
                 return moveFourPositions
             }
             else {
-                intcode[position4] = parameter1 * parameter2 * parameter3
+                intcode[valueFourAway] = parameter1 * parameter2 * parameter3
                 return moveFivePositions
             }
         case 3:
-            incomingIntcode[position1] = input
+            console.log('optCode 3')
+            incomingIntcode[valueOneAway] = input
             return moveTwoPositions
         case 4:
-            output = incomingIntcode[position1]
+            console.log('optCode 4')
+            output = incomingIntcode[valueOneAway]
             if (output !== 0) {
                 console.log(`output is ${output}`)
             }
             return moveTwoPositions
         case 5:
+            console.log('optCode 5')
             if (incomingIntcode[index + 1] !== 0) {
                 index = incomingIntcode[index + 2]
             }
@@ -78,6 +83,7 @@ function doInstruction(incomingIntcode, input, index) {
             }
             return index
         case 6:
+            console.log('optCode 6')
             if(incomingIntcode[index + 1] === 0) {
                 index = incomingIntcode[index + 2]
             }
@@ -86,21 +92,23 @@ function doInstruction(incomingIntcode, input, index) {
             }
             return index
         case 7:
+            console.log('optCode 7')
             if(incomingIntcode[index + 1] < incomingIntcode[index + 2]) {
-                incomingIntcode[position3] = 1
+                incomingIntcode[valueThreeAway] = 1
             } else {
-                incomingIntcode[position3] = 0
+                incomingIntcode[valueThreeAway] = 0
             }
             return moveThreePositions
         case 8:
-            if(incomingIntcode[index + 1] === incomingIntcode[index + 2]) {
-                incomingIntcode[position3] = 1
+            console.log('optCode 8')
+            if(incomingIntcode[valueOneAway] === incomingIntcode[valueTwoAway]) {
+                incomingIntcode[valueThreeAway] = 1
             }  else {
-                incomingIntcode[position3] = 0
+                incomingIntcode[valueThreeAway] = 0
             }  
             return moveFourPositions        
         case 99:
-            console.log('halt')
+            console.log('program ended normally')
             return endProgram
         default:
             console.log('something went wrong')
