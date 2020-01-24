@@ -98,7 +98,7 @@ function doInstruction(incomingIntcode, input, index) {
             }  else {
                 incomingIntcode[position3] = 0
             }  
-            return moveThreePositions        
+            return moveFourPositions        
         case 99:
             console.log('halt')
             return endProgram
