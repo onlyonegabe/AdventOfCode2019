@@ -7,6 +7,7 @@ let moveFivePositions = 'moveFive'
 let output
 let immediate = '1'
 
+
 export default function runIntcode(input, incomingIntcode) {
     let index = 0
     intcode = []
@@ -41,6 +42,13 @@ function doInstruction(incomingIntcode, input, index) {
     let parameter2 = parameters.parameter2
     let parameter3 = parameters.parameter3
 
+    let saveInput = 3
+    let setOutput = 4
+    let jumpIfTrue = 5
+    let jumpIfFalse = 6
+    let lessThan = 7
+    let equals = 8
+
     let opcode = getOpcode(instruction)
     switch (opcode) {
         case 1:
@@ -62,18 +70,18 @@ function doInstruction(incomingIntcode, input, index) {
                 intcode[valueFourAway] = parameter1 * parameter2 * parameter3
                 return moveFivePositions
             }
-        case 3:
+        case saveInput:
             console.log('optCode 3')
             incomingIntcode[valueOneAway] = input
             return moveTwoPositions
-        case 4:
+        case setOutput:
             console.log('optCode 4')
             output = incomingIntcode[valueOneAway]
             if (output !== 0) {
                 console.log(`output is ${output}`)
             }
             return moveTwoPositions
-        case 5:
+        case jumpIfTrue:
             console.log('optCode 5')
             if (incomingIntcode[index + 1] !== 0) {
                 index = incomingIntcode[index + 2]
@@ -82,7 +90,7 @@ function doInstruction(incomingIntcode, input, index) {
                 return moveThreePositions
             }
             return index
-        case 6:
+        case jumpIfFalse:
             console.log('optCode 6')
             if(incomingIntcode[index + 1] === 0) {
                 index = incomingIntcode[index + 2]
@@ -91,7 +99,7 @@ function doInstruction(incomingIntcode, input, index) {
                 return moveThreePositions
             }
             return index
-        case 7:
+        case lessThan:
             console.log('optCode 7')
             if(incomingIntcode[valueOneAway] < incomingIntcode[valueTwoAway]) {
                 incomingIntcode[valueThreeAway] = 1
@@ -99,7 +107,7 @@ function doInstruction(incomingIntcode, input, index) {
                 incomingIntcode[valueThreeAway] = 0
             }
             return moveFourPositions
-        case 8:
+        case equals:
             console.log('optCode 8')
             if(incomingIntcode[valueOneAway] === incomingIntcode[valueTwoAway]) {
                 incomingIntcode[valueThreeAway] = 1
