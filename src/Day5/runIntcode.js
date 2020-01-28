@@ -78,16 +78,16 @@ function doInstruction(incomingIntcode, input, index) {
             }
             return moveTwoPositions
         case jumpIfTrue:
-            if (incomingIntcode[index + 1] !== 0) {
-                index = incomingIntcode[valueTwoAway]
+            if (incomingIntcode[valueOneAway] !== 0) {
+                index = valueTwoAway
             }
             else {
                 return moveThreePositions
             }
             return index
         case jumpIfFalse:
-            if(incomingIntcode[index + 1] === 0) {
-                index = incomingIntcode[valueTwoAway]
+            if(incomingIntcode[valueOneAway] === 0) {
+                index = valueTwoAway
             }
             else {
                 return moveThreePositions
