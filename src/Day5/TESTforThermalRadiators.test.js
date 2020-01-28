@@ -1,54 +1,46 @@
 import runIntcode from "./runIntcode"
 
-describe('Given opcode is 5', () => {
-    test('when the first parameter is non-zero then it sets the instruction pointer to the value from the second parameter value', () => {
-        const optcode = 5
-        const firstParameter = 3
-        const secondParameter = 4
-        const intCode = [optcode, firstParameter, secondParameter, 5, 99]
+describe('jump-if-true', () => {
+    test('when the first parameter is non-zero then it sets the instruction pointer to the second parameter value', () => {
+        const jumpIfTrue = 5
+        const intCode = [jumpIfTrue, 3, 3, 4, 99]
         
         const input = 0
         const result = runIntcode(input, intCode)
         
-        expect(result.index).toEqual(secondParameter)
+        expect(result.index).toEqual(4)
     })
 
     test('when the first parameter is zero then it does nothing', () => {
-        const optcode = 5
-        const firstParameter = 0
-        const secondParameter = 6
-        const intCode = [optcode, firstParameter, secondParameter, 5, 99]
+        const jumpIfTrue = 5
+        const intCode = [jumpIfTrue, 0, 6, 99]
 
         const input = 0
         const result = runIntcode(input, intCode)
 
-        expect(result.intcode).toEqual(intCode)
+        expect(result.index).toEqual(3)
     })
 })
 
-describe('Given opcode is 6', () => {
-    test('when the first parameter is zero then it sets the instruction pointer to the value from the second parameter value', () => {
-        const optcode = 6
-        const firstParameter = 0
-        const secondParameter = 6
-        const intCode = [optcode, firstParameter, secondParameter, 5, 99]
+describe('jump-if-false', () => {
+    test('when the first parameter is zero then it sets the instruction pointer to the second parameter value', () => {
+        const jumpIfFalse = 6
+        const intCode = [jumpIfFalse, 0, 3, 5, 6, 99]
 
         const input = 0
         const result = runIntcode(input, intCode)
 
-        expect(result.index).toEqual(secondParameter)
+        expect(result.index).toEqual(5)
     })
 
-    test('when the first parameter is zero then it does nothing', () => {
-        const optcode = 6
-        const firstParameter = 3
-        const secondParameter = 6
-        const intCode = [optcode, firstParameter, secondParameter, 5, 99]
+    test('when the first parameter is non-zero then it does nothing', () => {
+        const jumpIfFalse = 6
+        const intCode = [jumpIfFalse, 3, 6, 99]
         
         const input = 0
         const result = runIntcode(input, intCode)
     
-        expect(result.intcode).toEqual(intCode)
+        expect(result.index).toEqual(3)
     })    
 })
 
