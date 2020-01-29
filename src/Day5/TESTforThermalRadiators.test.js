@@ -1,14 +1,14 @@
 import runIntcode from "./runIntcode"
 
 describe('jump-if-true', () => {
-    test('when first parameter index value is non-zero then it sets the instruction pointer to the second parameter value', () => {
+    test('when first parameter index value is non-zero then it sets the instruction pointer to the second parameter index value', () => {
         const jumpIfTrue = 5
-        const intCode = [jumpIfTrue, 3, 4, 1, 99]
+        const intCode = [jumpIfTrue, 3, 4, 1, 5, 99]
         
         const input = 0
         const result = runIntcode(input, intCode)
         
-        expect(result.index).toEqual(4)
+        expect(result.index).toEqual(5)
     })
 
     test('when first parameter index value is zero then it does nothing', () => {
@@ -23,14 +23,14 @@ describe('jump-if-true', () => {
 })
 
 describe('jump-if-false', () => {
-    test('when the first parameter index value is zero then it sets the instruction pointer to the second parameter value', () => {
+    test('when the first parameter index value is zero then it sets the instruction pointer to the second parameter index value', () => {
         const jumpIfFalse = 6
-        const intCode = [jumpIfFalse, 3, 4, 0, 99]
+        const intCode = [jumpIfFalse, 3, 4, 0, 5, 99]
 
         const input = 0
         const result = runIntcode(input, intCode)
 
-        expect(result.index).toEqual(4)
+        expect(result.index).toEqual(5)
     })
 
     test('when the first parameter index value is non-zero then it does nothing', () => {

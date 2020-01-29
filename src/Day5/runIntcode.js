@@ -79,7 +79,7 @@ function doInstruction(incomingIntcode, input, index) {
             return moveTwoPositions
         case jumpIfTrue:
             if (incomingIntcode[valueOneAway] !== 0) {
-                index = valueTwoAway
+                index = incomingIntcode[valueTwoAway]
             }
             else {
                 return moveThreePositions
@@ -87,7 +87,7 @@ function doInstruction(incomingIntcode, input, index) {
             return index
         case jumpIfFalse:
             if(incomingIntcode[valueOneAway] === 0) {
-                index = valueTwoAway
+                index = incomingIntcode[valueTwoAway]
             }
             else {
                 return moveThreePositions
@@ -112,6 +112,8 @@ function doInstruction(incomingIntcode, input, index) {
             return endProgram
         default:
             console.log('something went wrong')
+            console.log(`index was ${index}`)
+            console.log(`opcode was ${opcode}`)
             return endProgram
     }
 }

@@ -42,7 +42,7 @@ describe('Using position mode', () => {
     })
 
     describe('jump test example', () => {
-        test.only('with input 0 should output 0', () => {
+        test('with input 0 should output 0', () => {
             const intCode = [3, 12, 6, 12, 15, 1, 13, 14, 13, 4, 13, 99, -1, 0, 1, 9]
             const input = 0
 
