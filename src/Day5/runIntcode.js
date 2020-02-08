@@ -88,7 +88,7 @@ function doInstruction(incomingIntcode, input, index) {
             }
             return index
         case 7:
-            if(incomingIntcode[valueOneAway] < incomingIntcode[valueTwoAway]) {
+            if(parameter1 < parameter2) {
                 incomingIntcode[valueThreeAway] = 1
             } else {
                 incomingIntcode[valueThreeAway] = 0
