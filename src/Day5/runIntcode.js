@@ -43,13 +43,6 @@ function doInstruction(incomingIntcode, input, index) {
     let parameter2 = parameters.parameter2
     let parameter3 = parameters.parameter3
 
-    let saveInput = 3
-    let setOutput = 4
-    let jumpIfTrue = 5
-    let jumpIfFalse = 6
-    let lessThan = 7
-    let equals = 8
-
     let opcode = getOpcode(instruction)
     switch (opcode) {
         case 1:
@@ -69,24 +62,24 @@ function doInstruction(incomingIntcode, input, index) {
                 intcode[valueFourAway] = parameter1 * parameter2 * parameter3
                 return moveFivePositions
             }
-        case saveInput:
+        case 3:
             incomingIntcode[valueOneAway] = input
             return moveTwoPositions
-        case setOutput:
+        case 4:
             output = incomingIntcode[valueOneAway]
             if (output !== 0) {
                 console.log(`output is ${output}`)
             }
             return moveTwoPositions
-        case jumpIfTrue:
-            if (incomingIntcode[valueOneAway] !== 0) {
-                index = incomingIntcode[valueTwoAway]
+        case 5:
+            if (parameter1 !== 0) {
+                index = parameter2
             }
             else {
                 return moveThreePositions
             }
             return index
-        case jumpIfFalse:
+        case 6:
             if(incomingIntcode[valueOneAway] === 0) {
                 index = incomingIntcode[valueTwoAway]
             }
@@ -94,14 +87,14 @@ function doInstruction(incomingIntcode, input, index) {
                 return moveThreePositions
             }
             return index
-        case lessThan:
+        case 7:
             if(incomingIntcode[valueOneAway] < incomingIntcode[valueTwoAway]) {
                 incomingIntcode[valueThreeAway] = 1
             } else {
                 incomingIntcode[valueThreeAway] = 0
             }
             return moveFourPositions
-        case equals:
+        case 8:
             if(incomingIntcode[valueOneAway] === incomingIntcode[valueTwoAway]) {
                 incomingIntcode[valueThreeAway] = 1
             }  else {
