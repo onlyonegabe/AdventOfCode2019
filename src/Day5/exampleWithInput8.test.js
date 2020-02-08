@@ -102,6 +102,26 @@ describe('Using immediate mode', () => {
             expect(result.output).toEqual(0)
         })
     })
+
+    describe('jump test example', () => {
+        test('with input 0 should output 0', () => {
+            const intCode = [3, 3, 1105, -1, 9, 1101, 0, 0, 12, 4, 12, 99, 1]
+            const input = 0
+
+            const result = runIntcode(input, intCode)
+    
+            expect(result.output).toEqual(0)  
+        })
+
+        test('with input nonzero should output 1', () => {
+            const intCode = [3, 3, 1105, -1, 9, 1101, 0, 0, 12, 4, 12, 99, 1]
+            const input = 1
+
+            const result = runIntcode(input, intCode)
+    
+            expect(result.output).toEqual(1)
+        })
+    })
 })
 
 

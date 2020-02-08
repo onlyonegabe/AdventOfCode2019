@@ -12,6 +12,7 @@ export default function runIntcode(input, incomingIntcode) {
     let index = 0
     intcode = []
     intcode = incomingIntcode
+    output = undefined
     while(true) {
         let result = doInstruction(intcode, input, index)
         if (result === endProgram) {
