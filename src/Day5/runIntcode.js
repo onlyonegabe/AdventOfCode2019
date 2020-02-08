@@ -95,7 +95,7 @@ function doInstruction(incomingIntcode, input, index) {
             }
             return moveFourPositions
         case 8:
-            if(incomingIntcode[valueOneAway] === incomingIntcode[valueTwoAway]) {
+            if(parameter1 === parameter2) {
                 incomingIntcode[valueThreeAway] = 1
             }  else {
                 incomingIntcode[valueThreeAway] = 0
