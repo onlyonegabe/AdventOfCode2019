@@ -80,8 +80,8 @@ function doInstruction(incomingIntcode, input, index) {
             }
             return index
         case 6:
-            if(incomingIntcode[valueOneAway] === 0) {
-                index = incomingIntcode[valueTwoAway]
+            if(parameter1 === 0) {
+                index = parameter2
             }
             else {
                 return moveThreePositions
