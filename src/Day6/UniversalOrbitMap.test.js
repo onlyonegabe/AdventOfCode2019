@@ -62,7 +62,7 @@ test("get indirectOrbits from file", () => {
     expect(indirectOrbits).toBe(618522)
 })
 
-test.only("get directOrbits from file", () => {
+test("get directOrbits from file", () => {
     let fs = require('fs')
     let input = fs.readFileSync("src/Day6/orbits.data").toString().split("\n")
     expect(input.length).toBe(2603)
