@@ -1,7 +1,7 @@
 export function createItems(input) {
-    let items = {}
+    const items = {}
     input.split('\n').forEach(element => {
-        let parsedItem = element.split(')')
+        const parsedItem = element.split(')')
         items[parsedItem[1]] = parsedItem[0]
     })
     return items
