@@ -10,15 +10,13 @@ export function createItems(input) {
 export function findIndirectOrbits(items) {
     const entries = Object.entries(items)
     let indirectOrbits = 0
-    for (const [,object] of entries) {
+    for (let [,object] of entries) {
         if (object === "COM") {
             continue;
         }
 
-        let something = object
-        while(something !== "COM") {
-            let object = items[something]
-            something = object
+        while(object !== "COM") {
+            object = items[object]
             indirectOrbits++
         }
     }
