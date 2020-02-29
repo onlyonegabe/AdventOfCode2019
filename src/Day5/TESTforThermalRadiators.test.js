@@ -5,7 +5,7 @@ describe('jump-if-true', () => {
         const jumpIfTrue = 5
         const intCode = [jumpIfTrue, 3, 4, 1, 5, 99]
         
-        const input = 0
+        const input = [0]
         const result = runIntcode(input, intCode)
         
         expect(result.index).toEqual(5)
@@ -15,7 +15,7 @@ describe('jump-if-true', () => {
         const jumpIfTrue = 5
         const intCode = [jumpIfTrue, 4, 1, 99, 0]
 
-        const input = 0
+        const input = [0]
         const result = runIntcode(input, intCode)
 
         expect(result.index).toEqual(3)
@@ -27,7 +27,7 @@ describe('jump-if-false', () => {
         const jumpIfFalse = 6
         const intCode = [jumpIfFalse, 3, 4, 0, 5, 99]
 
-        const input = 0
+        const input = [0]
         const result = runIntcode(input, intCode)
 
         expect(result.index).toEqual(5)
@@ -37,7 +37,7 @@ describe('jump-if-false', () => {
         const jumpIfFalse = 6
         const intCode = [jumpIfFalse, 3, 6, 99]
         
-        const input = 0
+        const input = [0]
         const result = runIntcode(input, intCode)
     
         expect(result.index).toEqual(3)
@@ -54,7 +54,7 @@ describe('Given opcode is 7', () => {
         const intCode = [optcode, firstParameter, secondParameter, thirdParameter, 99]
         const expected = [optcode, firstParameter, secondParameter, 1, 99]
     
-        const input = 0
+        const input = [0]
         const result = runIntcode(input, intCode)
     
         console.log(result.intcode)
@@ -69,7 +69,7 @@ describe('Given opcode is 7', () => {
         const intCode = [optcode, firstParameter, secondParameter, thirdParameter, 99]
         const expected = [optcode, 0, secondParameter, thirdParameter, 99]
     
-        const input = 0
+        const input = [0]
         const result = runIntcode(input, intCode)
     
         expect(result.intcode).toEqual(expected)
@@ -85,7 +85,7 @@ describe('Given opcode is 8', () => {
         const intCode = [optcode, firstParameter, secondParameter, thirdParameter, 99]
         const expected = [optcode, firstParameter, secondParameter, 1, 99]
     
-        const input = 0
+        const input = [0]
         const result = runIntcode(input, intCode)
     
         expect(result.intcode).toEqual(expected)
@@ -99,7 +99,7 @@ describe('Given opcode is 8', () => {
         const intCode = [optcode, firstParameter, secondParameter, thirdParameter, 99]
         const expected = [optcode, firstParameter, secondParameter, 0, 99]
     
-        const input = 0
+        const input = [0]
         const result = runIntcode(input, intCode)
     
         expect(result.intcode).toEqual(expected)
