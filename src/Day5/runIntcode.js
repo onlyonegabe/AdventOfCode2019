@@ -64,7 +64,7 @@ function doInstruction(incomingIntcode, input, index) {
             }
         case 3:
             console.log(`input is ${input}`)
-            incomingIntcode[valueOneAway] = input.pop()
+            incomingIntcode[valueOneAway] = input.shift()
             return moveTwoPositions
         case 4:
             output = incomingIntcode[valueOneAway]
